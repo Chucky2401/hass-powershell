@@ -24,14 +24,14 @@
         http://github.com/UserName/RepoName
 #>
 
-#---------------------------------------------------------[Script Parameters]------------------------------------------------------
+#------------------------------------------------------------ [Parameters] ------------------------------------------------------------
 
 [CmdletBinding(SupportsShouldProcess, ConfirmImpact = "Low")]
 Param (
     #Script parameters go here
 )
 
-#---------------------------------------------------------[Initialisations]--------------------------------------------------------
+#---------------------------------------------------------- [Initialisation] ----------------------------------------------------------
 
 #Set Error Action to Silently Continue
 $ErrorActionPreference = "SilentlyContinue"
@@ -46,11 +46,11 @@ Add-Type -Path "D:\Utilisateurs\TheBlackWizard\Logiciels\Git\PowerShell\hass-pow
 
 $scriptRoot = Split-Path $Script:MyInvocation.MyCommand.Path
 
-#-----------------------------------------------------------[Functions]------------------------------------------------------------
+#------------------------------------------------------------ [Functions] -------------------------------------------------------------
 
 . $scriptRoot\inc\functions\Import-Variables.ps1
 
-#----------------------------------------------------------[Declarations]----------------------------------------------------------
+#----------------------------------------------------------- [Declaration] ------------------------------------------------------------
 
 Import-Variables -FilePath $scriptRoot\inc\vars\mqtt
 
@@ -58,7 +58,7 @@ $finalState = [System.Windows.Forms.PowerState]::Suspend
 
 $mqttClient = [uPLibrary.Networking.M2Mqtt.MqttClient]($MQTT_SERVER)
 
-#-----------------------------------------------------------[Execution]------------------------------------------------------------
+#------------------------------------------------------------ [Execution] -------------------------------------------------------------
 
 $mqttClient.Connect([guid]::NewGuid(), $MQTT_USERNAME, $MQTT_PASSWORD)
 $mqttClient.Publish("M2MQTTPowershell/Zoukzouk/message", [System.Text.Encoding]::UTF8.GetBytes("Start Suspend"))

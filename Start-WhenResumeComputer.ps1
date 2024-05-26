@@ -24,14 +24,14 @@
         http://github.com/UserName/RepoName
 #>
 
-#---------------------------------------------------------[Script Parameters]------------------------------------------------------
+#------------------------------------------------------------ [Parameters] ------------------------------------------------------------
 
 [CmdletBinding(SupportsShouldProcess, ConfirmImpact = "Low")]
 Param (
     #Script parameters go here
 )
 
-#---------------------------------------------------------[Initialisations]--------------------------------------------------------
+#---------------------------------------------------------- [Initialisation] ----------------------------------------------------------
 
 #Set Error Action to Silently Continue
 $ErrorActionPreference = "SilentlyContinue"
@@ -46,11 +46,11 @@ Add-Type -Path "D:\Utilisateurs\TheBlackWizard\Logiciels\Git\PowerShell\hass-pow
 
 $scriptRoot = Split-Path $Script:MyInvocation.MyCommand.Path
 
-#-----------------------------------------------------------[Functions]------------------------------------------------------------
+#------------------------------------------------------------ [Functions] -------------------------------------------------------------
 
 . $scriptRoot\inc\functions\Import-Variables.ps1
 
-#----------------------------------------------------------[Declarations]----------------------------------------------------------
+#----------------------------------------------------------- [Declaration] ------------------------------------------------------------
 
 Import-Variables -FilePath $scriptRoot\inc\vars\mqtt
 
@@ -61,7 +61,7 @@ $mouseStep    = 0
 
 $mqttClient = [uPLibrary.Networking.M2Mqtt.MqttClient]($MQTT_SERVER)
 
-#-----------------------------------------------------------[Execution]------------------------------------------------------------
+#------------------------------------------------------------ [Execution] -------------------------------------------------------------
 
 Start-Sleep -Seconds $initialSleep
 
