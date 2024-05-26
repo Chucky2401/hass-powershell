@@ -42,6 +42,7 @@ If ($PSBoundParameters['Debug']) {
 }
 
 Add-Type -Assembly System.Windows.Forms
+Add-Type -Path "D:\Utilisateurs\TheBlackWizard\Logiciels\Git\PowerShell\hass-powershell\lib\M2Mqtt.4.3.0.0\lib\net45\M2Mqtt.Net.dll"
 $scriptRoot = Split-Path $Script:MyInvocation.MyCommand.Path
 
 #-----------------------------------------------------------[Functions]------------------------------------------------------------
@@ -52,6 +53,10 @@ $scriptRoot = Split-Path $Script:MyInvocation.MyCommand.Path
 Import-Variables -FilePath $scriptRoot\inc\vars\mqtt
 $finalState = [System.Windows.Forms.PowerState]::Suspend
 
+$mqttClient = [uPLibrary.Networking.M2Mqtt.MqttClient]($MQTT_SERVER)
 #-----------------------------------------------------------[Execution]------------------------------------------------------------
 
+$mqttClient.Connect([guid]::NewGuid(), $MQTT_USERNAME, $MQTT_PASSWORD)
+$mqttClient.Publish("M2MQTTPowershell/Zoukzouk/message", [System.Text.Encoding]::UTF8.GetBytes("Start Suspend"))
+$mqttClient.Disconnect()
 [System.Windows.Forms.Application]::SetSuspendState($finalState, $false, $false) | Out-Null
