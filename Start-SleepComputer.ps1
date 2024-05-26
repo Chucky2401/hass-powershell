@@ -42,11 +42,14 @@ If ($PSBoundParameters['Debug']) {
 }
 
 Add-Type -Assembly System.Windows.Forms
+$scriptRoot = Split-Path $Script:MyInvocation.MyCommand.Path
 
 #-----------------------------------------------------------[Functions]------------------------------------------------------------
 
+. $scriptRoot\inc\functions\Import-Variables.ps1
 #----------------------------------------------------------[Declarations]----------------------------------------------------------
 
+Import-Variables -FilePath $scriptRoot\inc\vars\mqtt
 $finalState = [System.Windows.Forms.PowerState]::Suspend
 
 #-----------------------------------------------------------[Execution]------------------------------------------------------------
