@@ -49,6 +49,7 @@ $scriptRoot = Split-Path $Script:MyInvocation.MyCommand.Path
 #------------------------------------------------------------ [Functions] -------------------------------------------------------------
 
 . $scriptRoot\inc\functions\Import-Variables.ps1
+. $scriptRoot\inc\functions\Start-ClearMemory.ps1
 
 #----------------------------------------------------------- [Declaration] ------------------------------------------------------------
 
@@ -59,6 +60,8 @@ $finalState = [System.Windows.Forms.PowerState]::Suspend
 $mqttClient = [uPLibrary.Networking.M2Mqtt.MqttClient]($MQTT_SERVER)
 
 #------------------------------------------------------------ [Execution] -------------------------------------------------------------
+
+Start-ClearMemory
 
 $mqttClient.Connect([guid]::NewGuid(), $MQTT_USERNAME, $MQTT_PASSWORD)
 $mqttClient.Publish("M2MQTTPowershell/Zoukzouk/message", [System.Text.Encoding]::UTF8.GetBytes("Start Suspend"))
