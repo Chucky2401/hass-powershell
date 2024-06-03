@@ -32,8 +32,6 @@ Param (
 
 #---------------------------------------------------------- [Initialisation] ----------------------------------------------------------
 
-Start-Transcript -Path "D:\Utilisateurs\TheBlackWizard\Logiciels\Git\PowerShell\hass-powershell\clear-memory.trc"
-
 $scriptFilePath = $Script:MyInvocation.MyCommand.Path
 $scriptRoot = Split-Path $Script:MyInvocation.MyCommand.Path
 
@@ -83,5 +81,3 @@ If ($percentUse -gt 50) {
         Start-Process -FilePath $rammapExe -ArgumentList $argument -Wait
     }
 }
-
-Stop-Transcript
