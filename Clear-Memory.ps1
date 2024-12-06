@@ -28,6 +28,7 @@
 
 [CmdletBinding(SupportsShouldProcess, ConfirmImpact = "Low")]
 Param (
+  [Switch]$UserMemorySpace,
 )
 
 #---------------------------------------------------------- [Initialisation] ----------------------------------------------------------
